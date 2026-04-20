@@ -1,0 +1,663 @@
+/* ── Page ─────────────────────────────────────────────────── */
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: #faf8f5;
+  color: #3d3530;
+}
+
+/* ── Hero Header ──────────────────────────────────────────── */
+.hero-header {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: #fff;
+  border-bottom: 1px solid #e8e0d5;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-header::before,
+.hero-header::after {
+  content: '✦';
+  position: absolute;
+  color: #c9a96e;
+  opacity: 0.12;
+  font-size: 200px;
+  top: -40px;
+  line-height: 1;
+  pointer-events: none;
+}
+.hero-header::before { left: -40px; }
+.hero-header::after  { right: -40px; }
+
+.pre-title {
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 20px;
+}
+
+.couple-names {
+  font-family: 'Georgia', serif;
+  font-size: clamp(40px, 9vw, 80px);
+  font-weight: 400;
+  color: #2b221a;
+  margin: 0 0 14px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.amp {
+  color: #c9a96e;
+  font-style: italic;
+}
+
+.wedding-date {
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 2.5px;
+  color: #9e8f84;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+}
+
+/* ── Countdown ────────────────────────────────────────────── */
+.countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 32px;
+  padding: 16px 28px;
+  background: #fdf8f2;
+  border: 1px solid #e8d5b0;
+  border-radius: 14px;
+}
+
+.countdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+}
+
+.countdown-num {
+  font-family: 'Georgia', serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 400;
+  color: #2b221a;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.countdown-label {
+  font-family: system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #b09080;
+  margin-top: 4px;
+}
+
+.countdown-sep {
+  font-family: 'Georgia', serif;
+  font-size: 28px;
+  color: #c9a96e;
+  line-height: 1;
+  margin-bottom: 14px;
+  opacity: 0.6;
+}
+
+.hero-message {
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  color: #7a6e65;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+/* ── Gifts Section ────────────────────────────────────────── */
+.gifts-section {
+  flex: 1;
+  padding: 52px 24px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── Gift Card ────────────────────────────────────────────── */
+.gift-card {
+  background: #fff;
+  border: 1px solid #e8e0d5;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.gift-card:not(.reserved):hover {
+  box-shadow: 0 8px 28px rgba(100, 70, 40, 0.1);
+  transform: translateY(-2px);
+}
+
+.gift-card.reserved {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.gift-card.cash-gift {
+  border-color: #e8d5b0;
+  background: #fffcf7;
+}
+
+/* Badges */
+.status-badge {
+  display: inline-block;
+  font-family: system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 10px;
+  align-self: flex-start;
+}
+
+.badge-reserved {
+  background: #edf7ed;
+  color: #4a9e54;
+}
+
+.badge-cash {
+  background: #fdf3e3;
+  color: #c9a96e;
+  border: 1px solid #e8d5b0;
+}
+
+.badge-partial {
+  background: #fff7e6;
+  color: #d48806;
+  border: 1px solid #ffd591;
+}
+
+.gift-title {
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2b221a;
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.gift-notes {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #9e8f84;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gift-footer {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.gift-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #2b221a;
+  color: #f5efe8;
+  border: none;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gift-btn:hover:not(:disabled) {
+  background: #c9a96e;
+}
+
+.gift-btn:disabled {
+  background: #c8bfb8;
+  cursor: default;
+}
+
+.cash-info {
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  color: #9e8f84;
+  font-style: italic;
+}
+
+/* ── Cash Section ─────────────────────────────────────────── */
+.cash-section {
+  margin-top: 60px;
+}
+
+.section-title {
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #2b221a;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: #c9a96e;
+  margin: 12px auto 32px;
+}
+
+.cash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ── Modal Overlay ────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 34, 26, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+/* ── Modal ────────────────────────────────────────────────── */
+.modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 36px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  max-height: 90svh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(43, 34, 26, 0.28);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #b09080;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.modal-close:hover {
+  color: #2b221a;
+  background: #f5efe8;
+}
+
+.modal-header {
+  margin-bottom: 24px;
+  padding-right: 32px;
+}
+
+.modal-pre {
+  font-family: system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 6px;
+}
+
+.modal-title {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2b221a;
+  line-height: 1.35;
+}
+
+/* ── Modal sections ───────────────────────────────────────── */
+.modal-section {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-section-label {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #9e8f84;
+  margin: 0;
+}
+
+/* ── Variants ─────────────────────────────────────────────── */
+.variants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid #e8e0d5;
+  border-radius: 10px;
+  background: #faf8f5;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+
+.variant-card:hover {
+  border-color: #c9a96e;
+  background: #fffcf7;
+}
+
+.variant-card.selected {
+  border-color: #c9a96e;
+  background: #fdf3e3;
+}
+
+.variant-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.variant-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.variant-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.variant-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.variant-title {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #2b221a;
+  line-height: 1.45;
+  flex: 1;
+  min-width: 0;
+}
+
+.variant-check {
+  font-size: 13px;
+  color: #c9a96e;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Link "Ver produto →" dentro do card de variante */
+.variant-link-btn {
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  color: #c9a96e;
+  text-decoration: none;
+  border: 1px solid #e8d5b0;
+  border-radius: 6px;
+  padding: 4px 9px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.variant-link-btn:hover {
+  background: #c9a96e;
+  color: #fff;
+  border-color: #c9a96e;
+}
+
+/* Botão "Ver produto" para itens sem variantes */
+.view-product-btn {
+  width: 100%;
+  padding: 11px 16px;
+  background: transparent;
+  color: #2b221a;
+  border: 1.5px solid #2b221a;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.view-product-btn:hover {
+  background: #2b221a;
+  color: #f5efe8;
+}
+
+.view-product-hint {
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  color: #b09080;
+  text-align: center;
+  margin: 6px 0 0;
+  font-style: italic;
+}
+
+/* ── Fields ───────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #7a6e65;
+  font-weight: 500;
+}
+
+.required {
+  color: #c9a96e;
+}
+
+.field-input {
+  padding: 11px 14px;
+  border: 1.5px solid #e8e0d5;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 15px;
+  color: #2b221a;
+  background: #faf8f5;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field-input:focus {
+  border-color: #c9a96e;
+  background: #fff;
+}
+
+.field-input::placeholder {
+  color: #c4b8b0;
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+/* ── Confirm button ───────────────────────────────────────── */
+.modal-confirm-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2b221a;
+  color: #f5efe8;
+  border: none;
+  border-radius: 10px;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 12px;
+}
+
+.modal-confirm-btn:hover:not(:disabled) {
+  background: #c9a96e;
+}
+
+.modal-confirm-btn:disabled {
+  background: #d0c8c0;
+  cursor: not-allowed;
+}
+
+.modal-error {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #c0392b;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.modal-hint {
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  color: #b09080;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer {
+  text-align: center;
+  padding: 28px 24px;
+  border-top: 1px solid #e8e0d5;
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #b09080;
+  letter-spacing: 0.5px;
+  background: #fff;
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero-header {
+    padding: 52px 20px 44px;
+  }
+
+  .hero-header::before,
+  .hero-header::after {
+    font-size: 120px;
+    top: -20px;
+  }
+
+  .countdown {
+    gap: 4px;
+    padding: 14px 16px;
+  }
+
+  .countdown-block {
+    min-width: 36px;
+  }
+
+  .countdown-sep {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .gifts-section {
+    padding: 36px 16px;
+  }
+
+  .gifts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .gift-card {
+    padding: 16px;
+  }
+
+  .gift-title {
+    font-size: 13px;
+  }
+
+  .cash-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  /* Bottom-sheet modal on mobile */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    border-radius: 22px 22px 0 0;
+    padding: 28px 20px 36px;
+    max-width: 100%;
+    max-height: 88svh;
+  }
+}
+
+@media (max-width: 380px) {
+  .gifts-grid {
+    grid-template-columns: 1fr;
+  }
+}
