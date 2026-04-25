@@ -3,10 +3,10 @@ import { giftsList } from './data/gifts'
 import { sendGiftNotification } from './services/emailService'
 import './App.css'
 
-// ── Countdown ──────────────────────────────────────────────
-// 23/05/2026 às 20h00 horário de Brasília (UTC-3)
-const WEDDING_DATE = new Date('2026-05-23T20:00:00-03:00')
+const WEDDING_DATE   = new Date('2026-05-23T20:00:00-03:00')
+const DELIVERY_ADDR  = 'Rua Real da Torre, 1130, Torre Arbo, Apto 1502, Torre, Recife — CEP: 50710-025'
 
+// ── Countdown ──────────────────────────────────────────────
 function useCountdown(targetDate) {
   const calc = useCallback(() => {
     const diff = targetDate - new Date()
@@ -20,65 +20,69 @@ function useCountdown(targetDate) {
   }, [targetDate])
 
   const [time, setTime] = useState(calc)
-
   useEffect(() => {
     const timer = setInterval(() => setTime(calc()), 1000)
     return () => clearInterval(timer)
   }, [calc])
-
   return time
 }
 
-function pad(n) {
-  return String(n).padStart(2, '0')
+function pad(n) { return String(n).padStart(2, '0') }
+
+// ── Copiar PIX ─────────────────────────────────────────────
+function CopyPixButton({ pix }) {
+  const [copied, setCopied] = useState(false)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(pix)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  return (
+    <button className="pix-copy-btn" onClick={handleCopy} type="button">
+      {copied ? 'Copiado! ✓' : 'Copiar chave'}
+    </button>
+  )
 }
 
-// ── Modal ──────────────────────────────────────────────────
+// ── Modal (produtos e contribuições PIX) ───────────────────
 function GiftModal({ gift, onClose, onConfirm }) {
-  const hasVariants   = gift.variants && gift.variants.length > 0
-  const multiVariant  = hasVariants && gift.variants.length > 1
+  const isPixGift    = gift.isCashGift
+  const hasVariants  = gift.variants && gift.variants.length > 0
+  const multiVariant = hasVariants && gift.variants.length > 1
 
   const [selectedVariant, setSelectedVariant] = useState(
     hasVariants && !multiVariant ? gift.variants[0] : null
   )
-  const [name, setName]         = useState('')
-  const [message, setMessage]   = useState('')
-  const [sending, setSending]   = useState(false)
-  const [error, setError]       = useState('')
+  const [name, setName]       = useState('')
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
 
   const currentLink = selectedVariant?.link || gift.link
   const canConfirm  = name.trim().length > 0 && (!multiVariant || selectedVariant !== null)
 
-  // Fecha com Escape
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
-  // Trava scroll do body
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  const handleViewProduct = (link) => {
-    if (link) window.open(link, '_blank', 'noopener,noreferrer')
-  }
-
   const handleConfirm = async () => {
     if (!canConfirm || sending) return
     setSending(true)
-    setError('')
     try {
       await sendGiftNotification({
         guestName:    name.trim(),
         guestMessage: message.trim(),
         giftTitle:    gift.title,
         variantTitle: selectedVariant?.title || null,
+        value:        gift.valueLabel || null,
       })
     } catch (err) {
-      // Notificação falhou, mas não bloqueia a reserva
       console.error('[EmailJS] Erro ao enviar notificação:', err)
     }
     onConfirm(gift, name.trim(), message.trim(), selectedVariant)
@@ -92,12 +96,31 @@ function GiftModal({ gift, onClose, onConfirm }) {
 
         {/* Cabeçalho */}
         <div className="modal-header">
-          <p className="modal-pre">Presentear com</p>
+          <p className="modal-pre">{isPixGift ? 'Contribuição especial' : 'Presentear com'}</p>
           <h2 className="modal-title">{gift.title}</h2>
+          {isPixGift && (
+            <p className="pix-value-badge">{gift.valueLabel}</p>
+          )}
         </div>
 
-        {/* Seleção de variantes (ex: Air Fryer, Panelas) */}
-        {multiVariant && (
+        {/* ── PIX: mensagem engraçada + chave ── */}
+        {isPixGift && (
+          <div className="modal-section">
+            <div className="pix-funny-box">
+              <p className="pix-funny-text">{gift.funnyMessage}</p>
+            </div>
+            <div className="pix-info-box">
+              <div className="pix-info-row">
+                <span className="pix-info-label">Chave PIX</span>
+                <strong className="pix-info-value">{gift.pix}</strong>
+              </div>
+              <CopyPixButton pix={gift.pix} />
+            </div>
+          </div>
+        )}
+
+        {/* ── Produto: variantes ── */}
+        {!isPixGift && multiVariant && (
           <div className="modal-section">
             <p className="modal-section-label">Escolha uma opção e clique em "Ver produto" para pesquisar preços:</p>
             <div className="variants-list">
@@ -115,9 +138,7 @@ function GiftModal({ gift, onClose, onConfirm }) {
                     <span className="variant-title">{v.title}</span>
                   </div>
                   <div className="variant-right">
-                    {selectedVariant?.id === v.id && (
-                      <span className="variant-check">✓</span>
-                    )}
+                    {selectedVariant?.id === v.id && <span className="variant-check">✓</span>}
                     <a
                       href={v.link}
                       target="_blank"
@@ -134,13 +155,13 @@ function GiftModal({ gift, onClose, onConfirm }) {
           </div>
         )}
 
-        {/* Link direto para presente sem variante */}
-        {!multiVariant && currentLink && (
+        {/* ── Produto: link direto ── */}
+        {!isPixGift && !multiVariant && currentLink && (
           <div className="modal-section">
             <button
               type="button"
               className="view-product-btn"
-              onClick={() => handleViewProduct(currentLink)}
+              onClick={() => window.open(currentLink, '_blank', 'noopener,noreferrer')}
             >
               Ver produto →
             </button>
@@ -148,7 +169,21 @@ function GiftModal({ gift, onClose, onConfirm }) {
           </div>
         )}
 
-        {/* Campos de nome e mensagem */}
+        {/* ── Produto: endereço de entrega ── */}
+        {!isPixGift && (
+          <div className="address-box">
+            <span className="address-icon">📦</span>
+            <div>
+              <p className="address-title">Prefere enviar para nossa casa?</p>
+              <p className="address-text">
+                Envie no nome do Noivo ou da Noiva!<br />
+                {DELIVERY_ADDR}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* ── Campos nome e mensagem ── */}
         <div className="modal-section">
           <div className="field">
             <label className="field-label" htmlFor="guest-name">
@@ -179,18 +214,22 @@ function GiftModal({ gift, onClose, onConfirm }) {
           </div>
         </div>
 
-        {error && <p className="modal-error">{error}</p>}
-
         <button
           className="modal-confirm-btn"
           onClick={handleConfirm}
           disabled={!canConfirm || sending}
           type="button"
         >
-          {sending ? 'Confirmando...' : 'Confirmar reserva ✓'}
+          {sending
+            ? 'Confirmando...'
+            : isPixGift
+              ? 'Confirmar contribuição ✓'
+              : 'Confirmar reserva ✓'}
         </button>
         <p className="modal-hint">
-          Ao confirmar, o presente fica marcado como reservado para não ser comprado duas vezes.
+          {isPixGift
+            ? 'Após confirmar, enviaremos muito amor e gratidão pelo PIX recebido!'
+            : 'Ao confirmar, o presente fica marcado como reservado para não ser comprado duas vezes.'}
         </p>
       </div>
     </div>
@@ -199,40 +238,39 @@ function GiftModal({ gift, onClose, onConfirm }) {
 
 // ── Gift Card ──────────────────────────────────────────────
 function GiftCard({ gift, reservationCount, onSelect }) {
+  const isPixGift     = gift.isCashGift
   const multiVariant  = gift.variants && gift.variants.length > 1
   const maxRes        = gift.maxReservations || 1
-  const fullyReserved = reservationCount >= maxRes
-
-  // Quantas unidades ainda disponíveis (só mostra se maxReservations > 1)
-  const remaining = maxRes - reservationCount
+  const fullyReserved = !isPixGift && reservationCount >= maxRes
+  const remaining     = maxRes - reservationCount
 
   return (
-    <div className={`gift-card ${gift.isCashGift ? 'cash-gift' : ''} ${fullyReserved ? 'reserved' : ''}`}>
+    <div className={`gift-card ${isPixGift ? 'pix-gift' : ''} ${fullyReserved ? 'reserved' : ''}`}>
       {fullyReserved && <div className="status-badge badge-reserved">Reservado ✓</div>}
-      {!fullyReserved && maxRes > 1 && reservationCount > 0 && (
+      {!fullyReserved && !isPixGift && maxRes > 1 && reservationCount > 0 && (
         <div className="status-badge badge-partial">
           {remaining === 1 ? 'Última unidade' : `${remaining} disponíveis`}
         </div>
       )}
-      {gift.isCashGift && !fullyReserved && <div className="status-badge badge-cash">Contribuição</div>}
+      {isPixGift && (
+        <div className="status-badge badge-pix-value">{gift.valueLabel}</div>
+      )}
 
       <h3 className="gift-title">{gift.title}</h3>
 
-      {gift.notes && <p className="gift-notes">{gift.notes}</p>}
-
       <div className="gift-footer">
-        {gift.isCashGift ? (
-          <span className="cash-info">Entre em contato conosco</span>
-        ) : (
-          <button
-            className="gift-btn"
-            onClick={() => !fullyReserved && onSelect(gift)}
-            disabled={fullyReserved}
-            type="button"
-          >
-            {fullyReserved ? 'Reservado' : multiVariant ? 'Ver opções' : 'Ver presente'}
-          </button>
-        )}
+        <button
+          className="gift-btn"
+          onClick={() => !fullyReserved && onSelect(gift)}
+          disabled={fullyReserved}
+          type="button"
+        >
+          {fullyReserved
+            ? 'Reservado'
+            : isPixGift
+              ? 'Contribuir via PIX'
+              : multiVariant ? 'Ver opções' : 'Ver presente'}
+        </button>
       </div>
     </div>
   )
@@ -244,7 +282,6 @@ function App() {
 
   const [selectedGift, setSelectedGift] = useState(null)
 
-  // reservationCounts: { [giftId]: number } — quantas vezes cada item foi reservado
   const [reservationCounts, setReservationCounts] = useState(() => {
     try {
       const log = JSON.parse(localStorage.getItem('gift_log') || '[]')
@@ -252,9 +289,7 @@ function App() {
         acc[r.giftId] = (acc[r.giftId] || 0) + 1
         return acc
       }, {})
-    } catch {
-      return {}
-    }
+    } catch { return {} }
   })
 
   const handleConfirm = useCallback((gift, name, message, selectedVariant) => {
@@ -263,12 +298,14 @@ function App() {
       giftId:       gift.id,
       giftTitle:    gift.title,
       variantTitle: selectedVariant?.title || null,
+      value:        gift.valueLabel || null,
       name,
       message,
       timestamp:    new Date().toISOString(),
     })
     localStorage.setItem('gift_log', JSON.stringify(log))
 
+    // PIX gifts: conta mas nunca bloqueia. Produtos: bloqueia ao atingir maxReservations.
     setReservationCounts(prev => ({
       ...prev,
       [gift.id]: (prev[gift.id] || 0) + 1,
@@ -277,7 +314,7 @@ function App() {
   }, [])
 
   const regularGifts = giftsList.filter(g => !g.isCashGift)
-  const cashGifts    = giftsList.filter(g => g.isCashGift)
+  const pixGifts     = giftsList.filter(g => g.isCashGift)
 
   return (
     <div className="page">
@@ -328,11 +365,14 @@ function App() {
           ))}
         </div>
 
-        {cashGifts.length > 0 && (
+        {pixGifts.length > 0 && (
           <div className="cash-section">
             <h2 className="section-title">Contribuições Especiais</h2>
-            <div className="cash-grid">
-              {cashGifts.map(gift => (
+            <p className="section-subtitle">
+              Sem limite de contribuições — qualquer valor é bem-vindo com muito amor!
+            </p>
+            <div className="pix-grid">
+              {pixGifts.map(gift => (
                 <GiftCard
                   key={gift.id}
                   gift={gift}

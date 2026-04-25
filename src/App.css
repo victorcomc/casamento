@@ -193,6 +193,12 @@
   border: 1px solid #ffd591;
 }
 
+.badge-pix-value {
+  background: #f0faf0;
+  color: #3a9a4a;
+  border: 1px solid #b7e4bf;
+}
+
 .gift-title {
   font-family: system-ui, sans-serif;
   font-size: 14px;
@@ -248,7 +254,21 @@
   font-style: italic;
 }
 
-/* ── Cash Section ─────────────────────────────────────────── */
+/* ── PIX Gift Card ────────────────────────────────────────── */
+.gift-card.pix-gift {
+  border-color: #b7e4bf;
+  background: #f8fff9;
+}
+
+.gift-card.pix-gift .gift-btn {
+  background: #3a9a4a;
+}
+
+.gift-card.pix-gift .gift-btn:hover:not(:disabled) {
+  background: #2e7d3a;
+}
+
+/* ── Contribuições section ────────────────────────────────── */
 .cash-section {
   margin-top: 60px;
 }
@@ -268,15 +288,22 @@
   width: 36px;
   height: 1px;
   background: #c9a96e;
-  margin: 12px auto 32px;
+  margin: 12px auto 16px;
 }
 
-.cash-grid {
+.section-subtitle {
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  color: #9e8f84;
+  text-align: center;
+  font-style: italic;
+  margin: 0 0 28px;
+}
+
+.pix-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
-  max-width: 580px;
-  margin: 0 auto;
 }
 
 /* ── Modal Overlay ────────────────────────────────────────── */
@@ -578,6 +605,121 @@
   font-size: 11px;
   color: #b09080;
   text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Modal: PIX ───────────────────────────────────────────── */
+.pix-value-badge {
+  display: inline-block;
+  font-family: system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3a9a4a;
+  margin: 6px 0 0;
+  letter-spacing: -0.5px;
+}
+
+.pix-funny-box {
+  background: #f8fff9;
+  border: 1px solid #b7e4bf;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.pix-funny-text {
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  color: #3d3530;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+.pix-info-box {
+  background: #fff;
+  border: 1.5px solid #b7e4bf;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pix-info-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pix-info-label {
+  font-family: system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #9e8f84;
+}
+
+.pix-info-value {
+  font-family: system-ui, sans-serif;
+  font-size: 17px;
+  color: #2b221a;
+  letter-spacing: 0.5px;
+}
+
+.pix-copy-btn {
+  padding: 8px 14px;
+  background: #3a9a4a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.pix-copy-btn:hover {
+  background: #2e7d3a;
+}
+
+/* ── Modal: endereço de entrega ───────────────────────────── */
+.address-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fdf8f2;
+  border: 1px solid #e8d5b0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 4px;
+}
+
+.address-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.address-title {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a6e65;
+  margin: 0 0 4px;
+  letter-spacing: 0.3px;
+}
+
+.address-text {
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #9e8f84;
   line-height: 1.6;
   margin: 0;
 }

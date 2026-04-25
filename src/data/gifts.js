@@ -1,4 +1,7 @@
+const PIX_KEY = '81997420950'
+
 export const giftsList = [
+  // ── Produtos ──────────────────────────────────────────────
   {
     id: 'airfryer',
     title: 'Air Fryer Oven',
@@ -66,7 +69,7 @@ export const giftsList = [
   {
     id: 4,
     title: 'WAP Climatizador de Ar Air Fresh 4 em 1 90W 220V',
-    link: 'https://www.amazon.com.br/WAP-Climatizador-Reservatório-Essência-Velocidades/dp/B0DCK64CRH/ref=asc_df_B0DCK64CRH?mcid=463f9438231a353fbd08bc1b12631934&tag=googleshopp00-20&linkCode=df0&hvadid=709968341215&hvpos=&hvnetw=g&hvrand=13308866700079536615&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9237208&hvtargid=pla-2350231787692&hvocijid=13308866700079536615-B0DCK64CRH-&hvexpln=0&language=pt_BR&th=1',
+    link: 'https://www.amazon.com.br/WAP-Climatizador-Reservatório-Essência-Velocidades/dp/B0DCK64CRH/',
     isCashGift: false,
     notes: '',
     maxReservations: 2
@@ -139,7 +142,8 @@ export const giftsList = [
     title: 'Garrafa de Vidro para Água com Tampa 1L',
     link: 'https://www.google.com/search?q=Tuut+Garrafa+Acqua+para+%C3%81gua+em+Vidro+com+Tampa+Inox+1L',
     isCashGift: false,
-    notes: 'Definir se serão 2 ou 3 unidades.'
+    notes: '',
+    maxReservations: 2
   },
   {
     id: 20,
@@ -181,20 +185,140 @@ export const giftsList = [
     title: 'Kit 4 Cumbucas Sobremesa Melamina',
     link: 'https://www.google.com/search?q=kit+4+cumbucas+sobremesa+melamina',
     isCashGift: false,
-    notes: 'Ainda não decidi se adoro esse modelo.'
+    notes: ''
   },
   {
-    id: 26,
-    title: 'Aparelho de Fondue',
-    link: null,
-    isCashGift: true,
-    notes: 'Cota em dinheiro para escolhermos depois.'
+    id: 28,
+    title: 'Boleira de Vidro 5 em 1 com Suporte e Tampa',
+    link: 'https://www.mercadolivre.com.br/boleira-de-vidro-5-em-1-com-suporte-e-tampa--hauskfraft/up/MLBU3410025990',
+    isCashGift: false,
+    notes: ''
   },
   {
-    id: 27,
-    title: 'Roupão de Banho',
-    link: null,
+    id: 29,
+    title: 'Aparelho de Fondue Elétrico Oster',
+    link: 'https://www.amazon.com.br/Panela-Elétrica-Oster-Fondue-OFND100/dp/B09V39N65M/',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 30,
+    title: 'Forma Modeladora de Hamburguer',
+    link: 'https://www.amazon.com.br/gp/product/B0CQXYLFLP',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 31,
+    title: 'Kit Travesseiro',
+    link: 'https://www.amazon.com.br/dp/B07J442VHJ',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 32,
+    title: 'Kit Tapete Antiderrapante para Banheiro',
+    link: 'https://www.amazon.com.br/Decolab-Tapete-Antiderrapante-Banheiro-Cinza-escuro/dp/B0DKY6PPJL/',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 33,
+    title: 'Kit Organizador para Cozinha',
+    link: 'https://amazon.com.br/Organizador-Cozinha-Arm%C3%A1rio-Prateleira-Armazenamento/dp/B092RH9TVW',
+    isCashGift: false,
+    notes: ''
+  },
+
+  // ── Contribuições Especiais (PIX) — ordenadas por valor ───
+  {
+    id: 'pix-tft',
+    title: 'Aula de TFT com o Noivo',
     isCashGift: true,
-    notes: 'Cota em dinheiro para escolhermos depois.'
-  }
+    valueLabel: 'R$ 100',
+    value: 100,
+    pix: PIX_KEY,
+    funnyMessage: 'Prepare-se para receber aulas do maior mestre do TFT do Recife! Não garantimos que você ficará bom no jogo, mas garantimos que vão rir muito juntos. 🎮 O noivo aceita alunos iniciantes.',
+  },
+  {
+    id: 'pix-lol',
+    title: 'Aula de League of Legends com o Noivo',
+    isCashGift: true,
+    valueLabel: 'R$ 150',
+    value: 150,
+    pix: PIX_KEY,
+    funnyMessage: 'O noivo vai te ensinar tudo sobre League of Legends, inclusive como culpar o suporte e nunca assumir que errou. 🏆 Vagas limitadas — a Lumena já cancelou a inscrição dela.',
+  },
+  {
+    id: 'pix-roupa',
+    title: 'Roupão de Banho Personalizado',
+    isCashGift: true,
+    valueLabel: 'R$ 200',
+    value: 200,
+    pix: PIX_KEY,
+    funnyMessage: 'Porque o casal merece se sentir num spa de luxo sem sair de casa. Relaxamento garantido após cada jogo de LoL frustrado do noivo. 🛁',
+  },
+  {
+    id: 'pix-moto',
+    title: 'Acessório para a Moto do Casal',
+    isCashGift: true,
+    valueLabel: 'R$ 300',
+    value: 300,
+    pix: PIX_KEY,
+    funnyMessage: 'Vai deixar a moto do casal ainda mais estilosa! Velocidade, charme e estilo — tudo que o casal já tem, mas agora na moto também. 🏍️',
+  },
+  {
+    id: 'pix-dentista',
+    title: 'Material de Dentista para a Faculdade da Noiva',
+    isCashGift: true,
+    valueLabel: 'R$ 400',
+    value: 400,
+    pix: PIX_KEY,
+    funnyMessage: 'Ajude a Lumena a salvar sorrisos! Cada instrumento comprado é um dente a menos sofrendo no mundo. 😁 A futura dentista agradece — e seu sorriso também.',
+  },
+  {
+    id: 'pix-cabelo-noivo',
+    title: 'Corte de Cabelo do Noivo por 6 Meses',
+    isCashGift: true,
+    valueLabel: 'R$ 500',
+    value: 500,
+    pix: PIX_KEY,
+    funnyMessage: '6 meses de visual impecável para o noivo. A Lumena está cansada de ver aquele cabelo crescido e vai agradecer imensamente. ✂️ O noivo também, provavelmente.',
+  },
+  {
+    id: 'pix-cabelo-noiva',
+    title: 'Corte de Cabelo da Noiva por 6 Meses',
+    isCashGift: true,
+    valueLabel: 'R$ 1.000',
+    value: 1000,
+    pix: PIX_KEY,
+    funnyMessage: '6 meses de cabelo deslumbrante para a noiva! O Victor já aprovou com entusiasmo (ele não teve escolha). 💇‍♀️ Beleza e felicidade garantidas.',
+  },
+  {
+    id: 'pix-allinclusive',
+    title: 'Diária num All-Inclusive para o Casal',
+    isCashGift: true,
+    valueLabel: 'R$ 2.000',
+    value: 2000,
+    pix: PIX_KEY,
+    funnyMessage: 'Uma diária de puro luxo para o casal recarregar as energias! Drinks à vontade, comida sem fim e zero preocupações. 🍹 Spoiler: eles vão precisar disso depois do casamento.',
+  },
+  {
+    id: 'pix-viagem',
+    title: 'Viagem Internacional para o Casal',
+    isCashGift: true,
+    valueLabel: 'R$ 5.000',
+    value: 5000,
+    pix: PIX_KEY,
+    funnyMessage: 'Porque o amor não tem fronteiras — mas o passaporte sim, e passagem aérea também. ✈️🌍 Ajude o casal a explorar o mundo juntos. Destino ainda sendo debatido (a Lumena quer Europa, o Victor quer Japão).',
+  },
+  {
+    id: 'pix-obra',
+    title: 'Quitar a Obra do Apartamento do Casal',
+    isCashGift: true,
+    valueLabel: 'R$ 10.000',
+    value: 10000,
+    pix: PIX_KEY,
+    funnyMessage: 'O presente mais épico da lista! Você estará literalmente construindo o lar do casal. 🏗️ Um ato de amor que vai durar décadas. P.S.: aceitamos em parcelas no coração, mas no PIX é à vista mesmo.',
+  },
 ]
