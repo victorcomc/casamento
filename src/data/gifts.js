@@ -67,6 +67,58 @@ export const giftsList = [
     ]
   },
   {
+    id: 'mixer',
+    title: 'Mixer Elétrico',
+    isCashGift: false,
+    notes: '',
+    variants: [
+      {
+        id: 'mixer-wap',
+        title: 'WAP Mixer Elétrico 3 em 1 WM1 1000W 220V',
+        link: 'https://www.google.com/search?q=WAP+Mixer+El%C3%A9trico+3+em+1+WM1+1000W+220V',
+        image: null
+      },
+      {
+        id: 'mixer-philco',
+        title: 'Philco PMX2000 3 em 1 Inox 800W 220V',
+        link: 'https://www.google.com/search?q=Mixer+Philco+PMX2000+3+em+1+Inox+800W+220V',
+        image: null
+      },
+      {
+        id: 'mixer-mueller',
+        title: 'Mueller Mixer Turbo Inox 1000W 220V',
+        link: 'https://www.google.com/search?q=Mueller+Mixer+Turbo+Inox+1000W+220V',
+        image: null
+      }
+    ]
+  },
+  {
+    id: 'grill',
+    title: 'Sanduicheira e Grill',
+    isCashGift: false,
+    notes: '',
+    variants: [
+      {
+        id: 'grill-philco',
+        title: 'Philco PGR25A 750W Preto 220V',
+        link: 'https://www.google.com/search?q=Sanduicheira+Grill+Philco+PGR25A+750W+Preto+-+220V',
+        image: null
+      },
+      {
+        id: 'grill-cadence',
+        title: 'Cadence Click 220V',
+        link: 'https://www.google.com/search?client=opera-gx&q=Sanduicheira+El%C3%A9trica+Cadence+Click+-+220V',
+        image: null
+      },
+      {
+        id: 'grill-britania',
+        title: 'Britânia BGR27I Press 2 em 1 850W 220V',
+        link: 'https://www.google.com/search?q=Sanduicheira+e+Grill+Brit%C3%A2nia+BGR27I+Press+2+em+1+850W+220V',
+        image: null
+      }
+    ]
+  },
+  {
     id: 4,
     title: 'WAP Climatizador de Ar Air Fresh 4 em 1 90W 220V',
     link: 'https://www.amazon.com.br/WAP-Climatizador-Reservatório-Essência-Velocidades/dp/B0DCK64CRH/',
@@ -168,10 +220,23 @@ export const giftsList = [
   },
   {
     id: 23,
-    title: 'Jogo de Toalhas Buddemeyer Brisa Banho 4 Peças',
-    link: 'https://www.mercadolivre.com.br/jogo-de-toalhas-buddemeyer-brisa-banho-4-pecas/up/MLBU3678970572',
+    title: 'Jogo de Toalhas de Banho',
     isCashGift: false,
-    notes: ''
+    notes: '',
+    variants: [
+      {
+        id: 'toalhas-buddemeyer',
+        title: 'Buddemeyer Brisa Banho — 4 Peças',
+        link: 'https://www.mercadolivre.com.br/jogo-de-toalhas-buddemeyer-brisa-banho-4-pecas/up/MLBU3678970572',
+        image: null
+      },
+      {
+        id: 'toalhas-amazon',
+        title: 'Jogo de Toalhas de Banho Premium — 4 Peças',
+        link: 'https://www.amazon.com.br/dp/B0FLYP44G8',
+        image: null
+      }
+    ]
   },
   {
     id: 24,
@@ -190,7 +255,7 @@ export const giftsList = [
   {
     id: 28,
     title: 'Boleira de Vidro 5 em 1 com Suporte e Tampa',
-    link: 'https://www.mercadolivre.com.br/boleira-de-vidro-5-em-1-com-suporte-e-tampa--hauskfraft/up/MLBU3410025990',
+    link: 'https://www.mercadolivre.com.br/boleira-vidro-22x20cm-c-pe-rigado-tampa-cupula-transparente/up/MLBU3521698157',
     isCashGift: false,
     notes: ''
   },
@@ -198,13 +263,6 @@ export const giftsList = [
     id: 29,
     title: 'Aparelho de Fondue Elétrico Oster',
     link: 'https://www.amazon.com.br/Panela-Elétrica-Oster-Fondue-OFND100/dp/B09V39N65M/',
-    isCashGift: false,
-    notes: ''
-  },
-  {
-    id: 30,
-    title: 'Forma Modeladora de Hamburguer',
-    link: 'https://www.amazon.com.br/gp/product/B0CQXYLFLP',
     isCashGift: false,
     notes: ''
   },
@@ -259,22 +317,31 @@ export const giftsList = [
     funnyMessage: 'Porque o casal merece se sentir num spa de luxo sem sair de casa. Relaxamento garantido após cada jogo de LoL frustrado do noivo. 🛁',
   },
   {
+    id: 'pix-styling',
+    title: 'Consultoria de Styling com a Noiva',
+    isCashGift: true,
+    valueLabel: 'R$ 250',
+    value: 250,
+    pix: PIX_KEY,
+    funnyMessage: 'A Lumena tem o dom do estilo, e agora você pode ter acesso a esse talento! Uma consultoria completa com a noiva: dicas de moda, looks, combinações e como parecer arrumada sem esforço. 👗 O noivo aprovou a ideia — depois que ela escolheu todas as roupas dele.',
+  },
+  {
     id: 'pix-moto',
     title: 'Acessório para a Moto do Casal',
     isCashGift: true,
     valueLabel: 'R$ 300',
     value: 300,
     pix: PIX_KEY,
-    funnyMessage: 'Vai deixar a moto do casal ainda mais estilosa! Velocidade, charme e estilo — tudo que o casal já tem, mas agora na moto também. 🏍️',
+    funnyMessage: 'Para a Lumena viajar com mais conforto e segurança ao lado do Victor! Um acessório que transforma cada passeio de moto numa aventura ainda mais especial para o casal. 🏍️💨 Porque a noiva merece chegar ao destino com muito estilo — e sorrindo.',
   },
   {
     id: 'pix-dentista',
-    title: 'Material de Dentista para a Faculdade da Noiva',
+    title: 'Material Odontológico para a Faculdade da Noiva',
     isCashGift: true,
     valueLabel: 'R$ 400',
     value: 400,
     pix: PIX_KEY,
-    funnyMessage: 'Ajude a Lumena a salvar sorrisos! Cada instrumento comprado é um dente a menos sofrendo no mundo. 😁 A futura dentista agradece — e seu sorriso também.',
+    funnyMessage: 'Ajude a Lumena a salvar sorrisos! Cada instrumental comprado é um dente a menos sofrendo no mundo. 😁 A futura dentista agradece — e seu sorriso também.',
   },
   {
     id: 'pix-cabelo-noivo',
@@ -284,6 +351,15 @@ export const giftsList = [
     value: 500,
     pix: PIX_KEY,
     funnyMessage: '6 meses de visual impecável para o noivo. A Lumena está cansada de ver aquele cabelo crescido e vai agradecer imensamente. ✂️ O noivo também, provavelmente.',
+  },
+  {
+    id: 'pix-spa',
+    title: 'Spa de Casal',
+    isCashGift: true,
+    valueLabel: 'R$ 750',
+    value: 750,
+    pix: PIX_KEY,
+    funnyMessage: 'Uma experiência completa de relaxamento para o casal! Escalda pés revigorante, massagem relaxante de chocolate (sim, você leu certo!) e massagem craniofacial para renovar as energias. 🍫✨ Porque depois do casamento, o casal vai precisar muito se mimar juntos.',
   },
   {
     id: 'pix-cabelo-noiva',
@@ -298,8 +374,8 @@ export const giftsList = [
     id: 'pix-allinclusive',
     title: 'Diária num All-Inclusive para o Casal',
     isCashGift: true,
-    valueLabel: 'R$ 2.000',
-    value: 2000,
+    valueLabel: 'R$ 2.500',
+    value: 2500,
     pix: PIX_KEY,
     funnyMessage: 'Uma diária de puro luxo para o casal recarregar as energias! Drinks à vontade, comida sem fim e zero preocupações. 🍹 Spoiler: eles vão precisar disso depois do casamento.',
   },
@@ -319,6 +395,6 @@ export const giftsList = [
     valueLabel: 'R$ 10.000',
     value: 10000,
     pix: PIX_KEY,
-    funnyMessage: 'O presente mais épico da lista! Você estará literalmente construindo o lar do casal. 🏗️ Um ato de amor que vai durar décadas. P.S.: aceitamos em parcelas no coração, mas no PIX é à vista mesmo.',
+    funnyMessage: 'O presente mais épico da lista! Você estará literalmente construindo o lar do casal. 🏗️ Um ato de amor que vai durar décadas — e de carinho que nunca vai ser esquecido.',
   },
 ]
