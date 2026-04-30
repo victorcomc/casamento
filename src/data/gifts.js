@@ -287,6 +287,27 @@ export const giftsList = [
     isCashGift: false,
     notes: ''
   },
+  {
+    id: 34,
+    title: 'PlayStation 5 Pro',
+    link: 'https://www.mercadolivre.com.br/sony-playstation-5-pro-cfi-7020-2tb-digital-cor-branco-2024/p/MLB41975964',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 35,
+    title: 'Ar Condicionado LG Dual Inverter ArtCool UV Nano',
+    link: 'https://www.mercadolivre.com.br/ar-condicionado-lg-dual-inverter-voice-ai-artcool-uv-nano-1-cinza/p/MLB36524430',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 36,
+    title: 'Robô Aspirador Xiaomi Mi Robot Vacuum X20 Max',
+    link: 'https://www.mercadolivre.com.br/rob-xiaomi-mi-robot-vacuum-x20-max-wi-fi-2025-cor-preto/p/MLB47440103',
+    isCashGift: false,
+    notes: ''
+  },
 
   // ── Contribuições Especiais (PIX) — ordenadas por valor ───
   {
