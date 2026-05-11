@@ -246,13 +246,6 @@ export const giftsList = [
     notes: ''
   },
   {
-    id: 25,
-    title: 'Kit 4 Cumbucas Sobremesa Melamina',
-    link: 'https://www.google.com/search?q=kit+4+cumbucas+sobremesa+melamina',
-    isCashGift: false,
-    notes: ''
-  },
-  {
     id: 28,
     title: 'Boleira de Vidro 5 em 1 com Suporte e Tampa',
     link: 'https://www.mercadolivre.com.br/boleira-vidro-22x20cm-c-pe-rigado-tampa-cupula-transparente/up/MLBU3521698157',
@@ -284,6 +277,34 @@ export const giftsList = [
     id: 33,
     title: 'Kit Organizador para Cozinha',
     link: 'https://amazon.com.br/Organizador-Cozinha-Arm%C3%A1rio-Prateleira-Armazenamento/dp/B092RH9TVW',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 34,
+    title: 'Kit 12 Potes Herméticos de Vidro',
+    link: 'https://www.amazon.com.br/Borosilicato-Life-Hermético-Alimentos-Micro-ondas/dp/B0G4RX68NC/',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 35,
+    title: 'Kit 20 Potes de Mantimento Herméticos',
+    link: 'https://www.mercadolivre.com.br/kit-20-potes-hermeticos-acrilicos--brinde-etiquetas/up/MLBU3493954479',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 36,
+    title: 'Jogo de Cama Casal 100% Algodão Percal 160 Fios',
+    link: 'https://www.riachuelo.com.br/jogo-de-cama-casal-4-pecas-percal-160-fios-nat-multicor-casa-riachuelo-16273427001_sku?sku=16273427001',
+    isCashGift: false,
+    notes: ''
+  },
+  {
+    id: 37,
+    title: 'Frigideira Tramontina Cerâmica',
+    link: 'https://a.co/d/01gKYrpI',
     isCashGift: false,
     notes: ''
   },
