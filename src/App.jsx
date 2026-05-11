@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { giftsList } from './data/gifts'
 import { sendGiftNotification } from './services/emailService'
+import { supabase } from './services/supabase'
 import './App.css'
 
 const WEDDING_DATE   = new Date('2026-05-23T20:00:00-03:00')
@@ -281,31 +282,31 @@ function App() {
   const countdown = useCountdown(WEDDING_DATE)
 
   const [selectedGift, setSelectedGift] = useState(null)
+  const [reservationCounts, setReservationCounts] = useState({})
 
-  const [reservationCounts, setReservationCounts] = useState(() => {
-    try {
-      const log = JSON.parse(localStorage.getItem('gift_log') || '[]')
-      return log.reduce((acc, r) => {
-        acc[r.giftId] = (acc[r.giftId] || 0) + 1
-        return acc
-      }, {})
-    } catch { return {} }
-  })
+  useEffect(() => {
+    supabase
+      .from('reservas')
+      .select('gift_id')
+      .then(({ data }) => {
+        if (!data) return
+        const counts = data.reduce((acc, r) => {
+          acc[r.gift_id] = (acc[r.gift_id] || 0) + 1
+          return acc
+        }, {})
+        setReservationCounts(counts)
+      })
+  }, [])
 
-  const handleConfirm = useCallback((gift, name, message, selectedVariant) => {
-    const log = JSON.parse(localStorage.getItem('gift_log') || '[]')
-    log.push({
-      giftId:       gift.id,
-      giftTitle:    gift.title,
-      variantTitle: selectedVariant?.title || null,
-      value:        gift.valueLabel || null,
-      name,
-      message,
-      timestamp:    new Date().toISOString(),
+  const handleConfirm = useCallback(async (gift, name, message, selectedVariant) => {
+    await supabase.from('reservas').insert({
+      gift_id:       String(gift.id),
+      guest_name:    name,
+      guest_message: message || null,
+      variant_title: selectedVariant?.title || null,
+      value:         gift.valueLabel || null,
     })
-    localStorage.setItem('gift_log', JSON.stringify(log))
 
-    // PIX gifts: conta mas nunca bloqueia. Produtos: bloqueia ao atingir maxReservations.
     setReservationCounts(prev => ({
       ...prev,
       [gift.id]: (prev[gift.id] || 0) + 1,
